@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Dr Assistant</string>
+    <string name="enter_otp_recieved_on">Enter OTP recieved on :</string>
+    <string name="otp">OTP</string>
+    <string name="enter_a_message">Enter a message</string>
+    <string name="name_of_patient">Name of Patient</string>
+    <string-array name="blood_groups">
+        <item>O+</item>
+        <item>O-</item>
+        <item>A+</item>
+        <item>A-</item>
+        <item>B+</item>
+        <item>B-</item>
+        <item>AB+</item>
+        <item>AB-</item>
+    </string-array>
+</resources>

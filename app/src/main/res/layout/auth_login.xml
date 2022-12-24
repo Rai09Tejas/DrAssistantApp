@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:includeFontPadding="false"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="100sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:includeFontPadding="false"
+            android:text="Login Form For Patient"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/login_description_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp"
+            android:includeFontPadding="false"
+            android:text="Please Enter Registered Phone number"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+        <!--        <TextView-->
+        <!--            android:id="@+id/phoneNo"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:includeFontPadding="false"-->
+        <!--            android:textAlignment="center"-->
+        <!--            android:textColor="@color/black"-->
+        <!--            android:textSize="16sp"-->
+        <!--            android:layout_gravity="center"-->
+        <!--            android:text="jnfjkenskjf"/>-->
+
+        <EditText
+            android:id="@+id/LoginPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="30dp"
+            android:text="Login"
+            android:textColor="@color/white"
+            android:textSize="24sp"
+            android:transitionName="transition_OTP_screen" />
+
+        <TextView
+            android:id="@+id/newUserSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp"
+            android:clickable="true"
+            android:gravity="bottom"
+            android:linksClickable="true"
+            android:minHeight="48dp"
+            android:padding="5dp"
+            android:text="New user? Create new user"
+            android:textColor="@color/purple_700"
+            android:textSize="18sp" />
+
+        <!--        <ProgressBar-->
+        <!--            android:id="@+id/progress_circular"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_gravity="bottom"-->
+        <!--android:layout_marginBottom="0dp"-->
+        <!--            />-->
+    </LinearLayout>
+</ScrollView>

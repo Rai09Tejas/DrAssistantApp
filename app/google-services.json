@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "850171760009",
+    "project_id": "drassistant-e881c",
+    "storage_bucket": "drassistant-e881c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850171760009:android:c03bf3b67584810137a558",
+        "android_client_info": {
+          "package_name": "com.example.android.drassist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850171760009-hecbnpaism128ah92998eqpmj6nmkvos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKpRkHhvuqHlO2EYscS0c_-gV2FZUBQ6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850171760009-hecbnpaism128ah92998eqpmj6nmkvos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:850171760009:android:60c070700d71ba7d37a558",
+        "android_client_info": {
+          "package_name": "com.example.android.drassistant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "850171760009-d066icjuro6s7f8du8fler1b6psac3g0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.android.drassistant",
+            "certificate_hash": "c4f5a11c67067236d695219cef7ce02696528ac4"
+          }
+        },
+        {
+          "client_id": "850171760009-hecbnpaism128ah92998eqpmj6nmkvos.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKpRkHhvuqHlO2EYscS0c_-gV2FZUBQ6Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "850171760009-hecbnpaism128ah92998eqpmj6nmkvos.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
