@@ -4,39 +4,39 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.PathEffect;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.MenuItemCompat;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.android.drassist.R;
 import com.example.android.drassist.UsersHelperClass;
-import com.example.android.drassist.adapters.ChatAdapter;
 import com.example.android.drassist.adapters.PatientListAdapter;
+import com.example.android.drassist.adapters.VPFragmentAdapter;
 import com.example.android.drassist.auth.LoginActivity;
+import com.example.android.drassist.fragments.ChatFragment;
+import com.example.android.drassist.fragments.NewPatientFragment;
+import com.example.android.drassist.fragments.PatientListFragment;
+import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class DoctorHomeActivity extends AppCompatActivity {
     String phoneNo;
@@ -52,6 +52,7 @@ public class DoctorHomeActivity extends AppCompatActivity {
     SharedPreferences.Editor sharedEditor;
 
     ArrayList<PatientList> patientList;
+    ArrayList<UsersHelperClass> list;
     PatientListAdapter adapter;
     UsersHelperClass post;
     ChatDetails data;
@@ -59,6 +60,9 @@ public class DoctorHomeActivity extends AppCompatActivity {
     FirebaseAuth auth;
 
     DatabaseReference ref;
+
+    TabLayout tab;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,22 +72,54 @@ public class DoctorHomeActivity extends AppCompatActivity {
         phoneNo = getIntent().getStringExtra("phoneNo");
 
         patientListRef = FirebaseDatabase.getInstance().getReference("chats/");
+        ref = FirebaseDatabase.getInstance().getReference("users/");
 
         recyclerView = findViewById(R.id.patientListRecyclerView);
 
         patientList = new ArrayList<>();
+        list = new ArrayList<>();
 
         getData();
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ListOfPatient=findViewById(R.id.listofp);
-        ListOfPatient.setOnClickListener(view -> {
-            Intent i = new Intent(getApplicationContext(),ListOfPatients.class);
-            startActivity(i);
-        });
+        tab = findViewById(R.id.tabLayout);
+        viewPager = findViewById(R.id.viewPager2);
+
+        VPFragmentAdapter adapter = new VPFragmentAdapter(getSupportFragmentManager(), FragmentPagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
+        adapter.addFrag(new ChatFragment(),"CHATS");
+        adapter.addFrag(new PatientListFragment(),"PATIENT LIST");
+        adapter.addFrag(new NewPatientFragment(),"NEW PATIENT");
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tab));
+        tab.setOnTabSelectedListener(onTabSelectedListener(viewPager));
+
+//        ListOfPatient=findViewById(R.id.listofp);
+//        ListOfPatient.setOnClickListener(view -> {
+//            Intent i = new Intent(getApplicationContext(),ListOfPatients.class);
+//            startActivity(i);
+//        });
 
 
+    }
+
+    private TabLayout.OnTabSelectedListener onTabSelectedListener(final ViewPager pager) {
+        return new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                pager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        };
     }
 
     @Override
@@ -136,70 +172,29 @@ public class DoctorHomeActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void getData() {
         patientListRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    String chatWith = dataSnapshot.getKey();
-                    data = new ChatDetails();
-                    data = dataSnapshot.child("chatDetails").getValue(ChatDetails.class);
-                    System.out.println("--------" + data.getChatWith());
+            public void onDataChange(DataSnapshot snapshot) {
+                list.clear();
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    System.out.println("--------"+postSnapshot);
+                    UsersHelperClass university = postSnapshot.getValue(UsersHelperClass.class);
+                    list.add(university);
 
-                    patient = new PatientList(data.getChatName(), data.getChatEmail(), data.getChatAddress(), data.getChatWith());
 
                 }
-                patientList.add(patient);
-                adapter.notifyDataSetChanged();
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed");
             }
         });
-
-        creatRecycler();
+        PatientListFragment pat = new PatientListFragment();
+        pat.setPatientList(list);
     }
 
-    private void setPatientData(String chatWith) {
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                System.out.println(dataSnapshot);
-                for (DataSnapshot singleSnapshot : dataSnapshot.getChildren()) {
-                    post = singleSnapshot.getValue(UsersHelperClass.class);
 
-
-                    System.out.println("patient: " + patient);
-                }
-            }
-
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Log.d(TAG, databaseError.getMessage()); //Don't ignore errors!
-            }
-        };
-        ref.addListenerForSingleValueEvent(valueEventListener);
-
-    }
-
-    private void creatRecycler() {
-        recyclerView.setHasFixedSize(true);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-//        linearLayoutManager.setReverseLayout(true);
-//        linearLayoutManager.setStackFromEnd(true);
-        recyclerView.setLayoutManager(linearLayoutManager);
-
-        patientList = new ArrayList<>();
-        addItems();
-
-        recyclerView.scrollTo(0, 0);
-    }
-
-    private void addItems() {
-        adapter = new PatientListAdapter(this, patientList);
-        recyclerView.setAdapter(adapter);
-
-    }
 }

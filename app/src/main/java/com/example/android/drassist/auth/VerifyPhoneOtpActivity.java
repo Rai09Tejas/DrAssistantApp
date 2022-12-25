@@ -46,7 +46,7 @@ public class VerifyPhoneOtpActivity extends AppCompatActivity {
     EditText otp;
     Button verifyButton;
     ProgressBar progressBar;
-    TextView resendOpt, Phone;
+    TextView resendOpt,resendOpt2, Phone;
 
     UsersHelperClass helperClass;
 
@@ -110,11 +110,15 @@ public class VerifyPhoneOtpActivity extends AppCompatActivity {
         });
 
         resendOpt = findViewById(R.id.resend);
+        resendOpt2 = findViewById(R.id.resend2);
         Phone = findViewById(R.id.phoneNumberOtp);
 
         Phone.setText(String.format("+91 %s", phoneNo));
 
         resendOpt.setOnClickListener(view -> {
+            sendVerificationCode(phoneNo);
+        });
+        resendOpt2.setOnClickListener(view -> {
             sendVerificationCode(phoneNo);
         });
     }

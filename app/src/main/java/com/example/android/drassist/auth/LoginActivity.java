@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     EditText loginPhone ;
     TextView txtSignUp;
+    TextView txtSignUp2;
     Button loginButton;
 
     @Override
@@ -35,8 +36,13 @@ public class LoginActivity extends AppCompatActivity {
         loginButton = (Button) findViewById(R.id.button);
 
         txtSignUp = findViewById(R.id.newUserSignUp);
+        txtSignUp2 = findViewById(R.id.newUserSignUp2);
 
         txtSignUp.setOnClickListener(view -> {
+            Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
+            startActivity(intent);
+        });
+        txtSignUp2.setOnClickListener(view -> {
             Intent intent = new Intent(LoginActivity.this,SignupActivity.class);
             startActivity(intent);
         });

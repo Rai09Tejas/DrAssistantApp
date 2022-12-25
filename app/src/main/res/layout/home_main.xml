@@ -4,77 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/theme_color2"
     tools:context=".home.PatientHomeActivity">
 
 
-<!--    <ScrollView-->
-<!--        android:id="@+id/scrollView3"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="0dp"-->
-<!--        android:layout_marginStart="1dp"-->
-<!--        android:layout_marginEnd="1dp"-->
-<!--        android:fillViewport="true"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="60sp"
+            android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/userProfile"
+            <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="50sp"
-                android:layout_gravity="center"
-                android:text="user Profile" />
-
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/chatRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="0sp"
+                android:layout_height="wrap_content"
+                android:text="MESSAGES"
+                android:layout_marginStart="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
+            <View
+                android:layout_width="0sp"
                 android:layout_weight="1"
-                app:reverseLayout="true"/>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_height="0sp"/>
+            <ImageView
+                android:id="@+id/userProfile"
+                android:layout_width="50sp"
                 android:layout_height="50sp"
-                android:layout_marginHorizontal="5sp"
-                android:layout_marginBottom="10sp"
-                android:gravity="center|bottom"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/iv_mic"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginHorizontal="2sp"
-                    android:src="@drawable/ic_mic_2" />
-
-                <EditText
-                    android:id="@+id/messageBox"
-                    android:layout_width="309dp"
-                    android:layout_height="59dp"
-                    android:ems="10"
-                    android:hint="Write a Message"
-                    android:inputType="textPersonName" />
-
-                <ImageView
-                    android:id="@+id/sendButton"
-                    android:layout_width="40sp"
-                    android:layout_height="40sp"
-                    android:layout_marginHorizontal="2sp"
-                    app:srcCompat="@drawable/ic_send" />
-
-            </LinearLayout>
+                android:src="@drawable/ic_round_person_24"
+                />
         </LinearLayout>
-<!--    </ScrollView>-->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/chatRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0sp"
+            android:layout_weight="1"
+            android:background="@drawable/recyclerview_bg"
+            android:paddingHorizontal="10sp"
+            android:paddingBottom="10sp"
+            app:reverseLayout="true" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center"
+            android:paddingHorizontal="5sp"
+            android:layout_marginTop="10sp"
+            android:layout_marginBottom="10sp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/iv_mic"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_marginHorizontal="2sp"
+                android:padding="2sp"
+                android:background="@drawable/send_button_bg"
+                android:src="@drawable/ic_mic_2" />
+
+            <EditText
+                android:id="@+id/messageBox"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:textColorHint="@color/white"
+                android:backgroundTintMode="src_in"
+                android:paddingHorizontal="5sp"
+                android:layout_marginHorizontal="5sp"
+                android:paddingVertical="10sp"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="Write a Message"
+                android:background="@drawable/button_design"
+                android:backgroundTint="@color/grey"
+                android:inputType="textPersonName" />
+
+            <ImageView
+                android:id="@+id/sendButton"
+                android:layout_width="40sp"
+                android:layout_height="40sp"
+                android:layout_marginHorizontal="2sp"
+                android:padding="5sp"
+                android:background="@drawable/send_button_bg"
+                app:srcCompat="@drawable/ic_send" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <!--    </ScrollView>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

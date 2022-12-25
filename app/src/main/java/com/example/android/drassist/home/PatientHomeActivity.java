@@ -5,6 +5,7 @@ import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -13,6 +14,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -37,7 +40,7 @@ import java.util.Objects;
 public class PatientHomeActivity extends AppCompatActivity {
 
     String phoneNo, userType, uid;
-    Button userProfile;
+
 
     UsersHelperClass post;
     ChatDetails chatDetails;
@@ -47,7 +50,7 @@ public class PatientHomeActivity extends AppCompatActivity {
     DatabaseReference chatRef;
     FirebaseAuth auth;
 
-    private ImageView iv_mic;
+    private ImageView iv_mic,userProfile;
     private EditText messageInput;
     private ImageView send;
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;

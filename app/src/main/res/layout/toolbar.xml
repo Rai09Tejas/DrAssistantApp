@@ -5,6 +5,6 @@
     app:layout_constraintTop_toTopOf="parent"
     app:titleTextColor="@color/white"
     app:title="Dr Assistant"
-    android:background="@color/teal_700"
+    android:background="@color/theme_color"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" />

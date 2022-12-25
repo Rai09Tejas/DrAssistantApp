@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="theme_color">#9d426a</color>
+    <color name="theme_color2">#3c1928</color>
+    <color name="chat_theme_color">#b0507a</color>
+    <color name="chat_stroke_grey">#970042</color>
+    <color name="grey">#5b5b5b</color>
+    <color name="grey2">#bbbbbb</color>
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
